@@ -1,6 +1,4 @@
-const express = require("express");
-const { buildContact, getIndexOfContact } = require("./helpers");
-const router = express.Router();
+const { buildContact, getIndexOfContact } = require("../helpers");
 
 let contacts = [
   {
@@ -19,11 +17,11 @@ let contacts = [
   },
 ];
 
-router.get("/", (req, res) => {
+function getContacts(req, res) {
   return res.json(contacts);
-});
+}
 
-router.get("/:id", (req, res) => {
+function getContactById(req, res) {
   const contactIndex = getIndexOfContact(req, contacts);
 
   if (contactIndex !== -1) {
@@ -31,9 +29,9 @@ router.get("/:id", (req, res) => {
   }
 
   return res.status(404).end("Contact not found");
-});
+}
 
-router.post("/", (req, res) => {
+function createContact(req, res) {
   const { name, phone } = req.body;
 
   if (!name || !phone) {
@@ -45,9 +43,9 @@ router.post("/", (req, res) => {
   contacts.push(contact);
 
   return res.status(201).json(contact);
-});
+}
 
-router.put("/:id", (req, res) => {
+function updateContact(req, res) {
   const { name, phone } = req.body;
 
   const index = getIndexOfContact(req, contacts);
@@ -61,9 +59,9 @@ router.put("/:id", (req, res) => {
   contact.phone = phone || contact.phone;
 
   return res.status(200).json(contact);
-});
+}
 
-router.put("/:id/favorite", (req, res) => {
+function toggleFavorite(req, res) {
   const index = getIndexOfContact(req, contacts);
 
   if (index === -1) {
@@ -74,6 +72,12 @@ router.put("/:id/favorite", (req, res) => {
   contact.favorite = !contact.favorite;
 
   return res.status(200).json(contact);
-});
+}
 
-module.exports = { router };
+module.exports = {
+  getContacts,
+  getContactById,
+  createContact,
+  updateContact,
+  toggleFavorite,
+};

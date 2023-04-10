@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const { router } = require("./contactsRouter");
+const { router } = require("./routes/contactsRouter");
 
 const requestLogger = (request, response, next) => {
   console.log("Method:", request.method);
@@ -18,7 +18,9 @@ const unknownEndpoint = (request, response) => {
 app.use(cors());
 app.use(express.json());
 app.use(requestLogger);
+
 app.use('/contacts', router)
+
 app.use(unknownEndpoint);
 
 const PORT = process.env.PORT || 3001;

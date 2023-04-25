@@ -9,13 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      favorite: {
-        type: Sequelize.BOOLEAN
-      },
       name: {
         type: Sequelize.STRING
       },
-      phone: {
+      pass: {
         type: Sequelize.STRING
       },
       createdAt: {

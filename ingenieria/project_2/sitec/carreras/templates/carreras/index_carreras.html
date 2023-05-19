@@ -1,0 +1,15 @@
+{% extends 'carreras/layout.html' %}
+
+{% block title %}
+    Carreras
+{% endblock %}
+
+{% block body %}
+<div class="m-1">
+  <h1 class="font-medium">
+    Bienvenido {% for carrera in carreras %}
+    <li class="text-indigo-700">{{ carrera.nombre }}</li>
+    {% endfor %}
+  </h1>
+</div>
+{% endblock %}

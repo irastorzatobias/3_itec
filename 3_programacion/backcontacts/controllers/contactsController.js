@@ -1,23 +1,6 @@
 const { buildContact, getIndexOfContact } = require("../helpers");
 const { Contact } = require("../models");
 
-// let contacts = [
-//   {
-//     id: 1,
-//     date: "2019-05-30T19:20:14.298Z",
-//     favorite: true,
-//     name: "juan",
-//     phone: "66666666",
-//   },
-//   {
-//     id: 2,
-//     date: "2019-05-30T19:20:14.298Z",
-//     favorite: true,
-//     name: "maria",
-//     phone: "76767676",
-//   },
-// ];
-
 async function getContacts(req, res) {
   try {
     return await Contact.findAll().then((contacts) => res.json(contacts));
@@ -63,16 +46,6 @@ async function createContact(req, res) {
 
 async function updateContact(req, res) {
   const { name, phone } = req.body;
-
-  // const index = getIndexOfContact(req, contacts);
-
-  // if (index === -1) {
-  //   return res.status(404).json({ error: "Contact not found" });
-  // }
-
-  // const contact = contacts[index];
-  // contact.name = name || contact.name;
-  // contact.phone = phone || contact.phone;
 
   try {
     await Contact.update(

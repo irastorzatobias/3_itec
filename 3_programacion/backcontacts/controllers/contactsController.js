@@ -1,4 +1,4 @@
-const { buildContact, getIndexOfContact } = require("../helpers");
+// const { buildContact, getIndexOfContact } = require("../helpers");
 const { Contact } = require("../models");
 
 async function getContacts(req, res) {
